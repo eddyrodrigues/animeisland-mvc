@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model DiretorLookupViewModel
+
+<div class="row">
+    <div class="container">
+        <h2>Detalhes do Anime: @Model.Nome</h2>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Nome: <span class="text-black-50">@Model.Nome</span> </h5>
+                <p class="card-text">Publicações na plataforma: @Model.QuantidadePublicacoes</p>
+                <p class="card-text">Data de nascimento: @Model.DataNascimento.ToShortDateString()</p>
+            </div>
+        </div>
+
+        <a class="btn btn-primary mt-3" asp-controller="Diretores" asp-action="Index">Voltar para a lista de Diretores</a>
+    </div>
+</div>

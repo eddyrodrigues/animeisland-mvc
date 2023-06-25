@@ -1,0 +1,60 @@
+﻿@model AnimeViewModel;
+
+@{
+    ViewBag.Title = "Editar Animes";
+}
+
+<h1>@ViewBag.Title</h1>
+
+
+<div class="row">
+    <div class="container">
+        <div class="col-12">
+            <form asp-action="Edit" asp-controller="Animes" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label asp-for="Titulo"></label>
+                    <input asp-for="Titulo" name="Titulo" class="form-control" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sinopse"></label>
+                    <textarea asp-for="Sinopse" name="Sinopse" class="form-control"></textarea>
+                    <span asp-validation-for="Sinopse" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataEstreia"></label>
+                    <input asp-for="DataEstreia" name="DataEstreia"  class="form-control" type="date"/>
+                    <span asp-validation-for="DataEstreia" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="DiretorId"></label>
+                    <select asp-for="DiretorId" class="form-control" asp-items="@(new SelectList(@Model.Diretores, "Id","Nome"))"></select>
+                    <span asp-validation-for="DiretorId" class="text-danger"></span>
+                </div>
+
+                @{
+                    if (Model.Image == null)
+                    {
+                        <div class="form-group">
+                            <label asp-for="Image"></label>
+                            <input asp-for="Image" type="file" id="Image" name="Image">
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                    }
+                }
+                
+                <input type="hidden" name="Id" value="@Model.Id"/>
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <a class="btn btn-info" onclick="window.history.back()">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@await Html.PartialAsync("_ValidationScriptsPartial")

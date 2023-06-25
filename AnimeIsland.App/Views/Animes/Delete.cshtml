@@ -1,0 +1,17 @@
+﻿@model AnimeViewModel;
+
+<div class="row">
+    <div class="col-12">
+        <p>Deseja realmente excluir o Registro @Model.Titulo ?</p>
+        <p>Todas as informações serão aparagas</p>
+
+    </div>
+    <div class="col-12">
+        <form method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-secondary">Excluir</button>
+            <a class="btn btn-info" asp-controller="Animes" asp-action="Index">Voltar</a>
+        </form>
+        
+    </div>
+</div>

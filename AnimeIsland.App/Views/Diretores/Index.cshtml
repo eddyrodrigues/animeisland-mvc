@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DiretorLookupViewModel>
+
+<div class="row">
+    <div class="container">
+        <div class="col-4">
+            <a class="btn btn-primary" asp-controller="Diretores" asp-action="Create" supress-by-claim-name="director" supress-by-claim-value="create">Novo Diretor</a>
+        </div>
+        <div class="col-8">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container-fluid">
+        <table class="table table-responsive">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Data nascimento</th>
+                    <th>Quantidade Produções</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var diretor in Model)
+                {
+                    <tr>
+                        <td>@diretor.Nome</td>
+                        <td>@diretor.DataNascimento</td>
+                        <td>@diretor.QuantidadePublicacoes</td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="Diretores" asp-action="Edit" asp-route-id="@diretor.Id" supress-by-claim-name="directors" supress-by-claim-value="edit">Edit</a>
+                        <a class="btn btn-primary" asp-controller="Diretores" asp-action="Details" asp-su asp-route-id="@diretor.Id">Detalhes</a>
+                            <a class="btn btn-primary" asp-controller="Diretores" asp-action="DeleteGet" asp-route-id="@diretor.Id" supress-by-claim-name="directors" supress-by-claim-value="delete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

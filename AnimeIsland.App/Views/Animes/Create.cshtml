@@ -1,0 +1,48 @@
+﻿@model AnimeViewModel;
+
+@{
+    ViewBag.Title = "Adicionar Anime";
+}
+
+<h1>@ViewBag.Title</h1>
+<h3>Diretor não cadastrado? cadastre aqui: <a asp-controller="Diretores" asp-action="Create">Adicionar novo diretor</a> </h3>
+
+
+<div class="row">
+    <div class="container">
+        <div class="col-12">
+            <form asp-action="Create" asp-controller="Animes" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label asp-for="Titulo"></label>
+                    <input asp-for="Titulo" name="Titulo" class="form-control" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sinopse"></label>
+                    <textarea asp-for="Sinopse" name="Sinopse" class="form-control"></textarea>
+                    <span asp-validation-for="Sinopse" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataEstreia"></label>
+                    <input asp-for="DataEstreia" name="DataEstreia" class="form-control" type="date" />
+                    <span asp-validation-for="DataEstreia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DiretorId"></label>
+                    <select asp-for="DiretorId" class="form-control" asp-items="@(new SelectList(@Model.Diretores, "Id","Nome"))"></select>
+                    <span asp-validation-for="DiretorId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image"></label>
+                    <input asp-for="Image" type="file" id="Image" name="Image">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Adicionar" class="btn btn-success" />
+                    <a class="btn btn-info" asp-action="Index" asp-controller="Animes">Cancelar/Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

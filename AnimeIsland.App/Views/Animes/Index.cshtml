@@ -1,0 +1,48 @@
+﻿@using AnimeIsland.Data.Models;
+@model List<AnimeViewModel>
+
+<div class="row">
+    <div class="container">
+        <div class="col-4">
+            <a class="btn btn-primary" asp-controller="Animes" asp-action="Create" supress-by-claim-name="animes" supress-by-claim-value="create">Novo Anime</a>
+        </div>
+        <div class="col-8">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container-fluid">
+        <table class="table table-responsive">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Imagem</th>
+                    <th>Título</th>
+                    <th>Sinopse</th>
+                    <th>Data de Estreia</th>
+                    <th>Diretor</th>
+                    @*<th>Local Imagem</th>*@
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var anime in Model)
+                {
+                    <tr>
+                        <td><img src="~/imagens/@anime.LocalImagem" height="100px" width="100px"/></td>
+                        <td>@anime.Titulo</td>
+                        <td>@(anime.Sinopse.Length > 100 ? anime.Sinopse.Substring(0, 100) : anime.Sinopse)</td>
+                        <td>@anime.DataEstreia.ToString("d")</td>
+                        <td>@anime.Diretor?.Nome</td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="Animes" asp-action="Edit" asp-route-id="@anime.Id"  supress-by-claim-name="animes" supress-by-claim-value="create">Edit</a>
+                            <a class="btn btn-primary" asp-controller="Animes" asp-action="Details" asp-route-id="@anime.Id">Details</a>
+                            <a class="btn btn-primary" asp-controller="Animes" asp-action="Delete" asp-route-id="@anime.Id" supress-by-claim-name="animes" supress-by-claim-value="edit">Delete</a>
+                        </td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
